@@ -1,0 +1,8 @@
+header{
+    padding: 58px;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+}
