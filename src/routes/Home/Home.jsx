@@ -1,6 +1,5 @@
-//import React, { useState } from "react";
-//import { useEffect } from "react";
-//import { getWeather } from "../../service";
+import './Home.css'
+import Cards from '../../components/Card/Cards'
 import { CardsContext } from "../../contexts/CardsContext";
 import { useContext } from "react";
 
@@ -9,15 +8,8 @@ const Home = () => {
 
   return (
     <>
-      <div>
-        {cards.map((card) => {
-          return (
-            <div>
-              <h5>Ciudad: {card.name}</h5>
-              <hr />
-            </div>
-          );
-        })}
+      <div className='main-container'>
+        <Cards cards={cards}/>
       </div>
     </>
   );

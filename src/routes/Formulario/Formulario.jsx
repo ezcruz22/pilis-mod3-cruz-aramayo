@@ -1,21 +1,12 @@
-import { React } from "react";
 import { useForm } from "react-hook-form";
 import { getWeather } from "../../service";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { CardsContext } from "../../contexts/CardsContext";
 import { useContext } from "react";
+import { CardsContext } from "../../contexts/CardsContext";
 
 const Formulario = () => {
-  const SERVER_DOMAIN =
-    "https://api.open-meteo.com/v1/forecast?current_weather=true&latitude=";
 
   const { cards, setCards } = useContext(CardsContext);
-  const [nombre, setNombre] = useState("");
-  const [latitud, setLat] = useState("");
-  const [longitud, setLon] = useState("");
-  const [temp, setTemp] = useState("");
-  const [isOK, setIsOK] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,31 +16,33 @@ const Formulario = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (submit) => {
-    getWeather(
-      SERVER_DOMAIN +
-        submit.latitud +
-        `&longitude=` +
-        submit.longitud +
-        `&timezone=America/Argentina/Jujuy`
-    )
-      .then((data) => console.log(data))
-      .then((data) => setNombre(submit.nombre))
-      .then((data) => setLat(data.latitude))
-      .then((data) => setLon(data.longitude))
-      .then((data) => setTemp(data.current_weather.temperature))
-      .then((data) => setIsOK(true))
-      .catch((err) => console.log(err));
+  
 
-    if (isOK === true) {
-      console.log(temp);
-    }
+  const onSubmit = (submit) => {
+
+    getWeather(submit.latitud,submit.longitud)
+      .then((data)=> createCard(data,submit))
+      .then((data)=>console.log(data))
+      .catch((err) => console.log(err));
+      
   };
+
+  const createCard = (data,submit) => {
+    const cardNew = {
+      id:cards.length + 1,
+      name: submit.ciudad,
+      latitude:submit.latitud,
+      longitude:submit.longitud,
+      temperature:data.current_weather.temperature
+    }
+    setCards([...cards, cardNew])
+    navigate('/')
+  }
 
   return (
     <>
       <h1>Crear Nueva Ubicación</h1>
-      <form afterSubmit={() => navigate("/")} onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="titulo">Nombre</label>
 
@@ -60,7 +53,7 @@ const Formulario = () => {
             className="form-control"
             placeholder="Ingrese nombre"
             aria-invalid={errors.nombre ? "true" : "false"}
-            {...register("nombre", { required: true })}
+            {...register("ciudad", { required: true })}
           />
           {errors.nombre && (
             <span className="text-danger text-small d-block mb-2" role="alert">
@@ -108,7 +101,7 @@ const Formulario = () => {
             </span>
           )}
         </div>
-        <button className="btn btn-primary">Crear</button>
+        <button className="btn btn-primary" type="submit">Crear</button>
       </form>
     </>
   );
