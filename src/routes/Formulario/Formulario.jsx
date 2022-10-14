@@ -1,15 +1,12 @@
 import { useForm } from "react-hook-form";
 import { getWeather } from "../../service";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { CardsContext } from "../../contexts/CardsContext";
 
 const Formulario = () => {
-  const SERVER_DOMAIN =
-    "https://api.open-meteo.com/v1/forecast?current_weather=true&latitude=";
 
   const { cards, setCards } = useContext(CardsContext);
-  const [datos, setDatos] = useState({});
 
   const navigate = useNavigate();
 
@@ -22,29 +19,25 @@ const Formulario = () => {
   
 
   const onSubmit = (submit) => {
-    
-    getWeather(
-      SERVER_DOMAIN +
-        submit.latitud +
-        `&longitude=` +
-        submit.longitud +
-        `&timezone=America/Argentina/Jujuy`
-    )
-    .then((data) => console.log(data))
-    .then((data)=> setDatos(data))
-    .catch((err) => console.log(err));
 
+    getWeather(submit.latitud,submit.longitud)
+      .then((data)=> createCard(data,submit))
+      .then((data)=>console.log(data))
+      .catch((err) => console.log(err));
+      
+  };
+
+  const createCard = (data,submit) => {
     const cardNew = {
       id:cards.length + 1,
       name: submit.ciudad,
       latitude:submit.latitud,
       longitude:submit.longitud,
-      //temperature:{...datos.current_weather.temperature}
+      temperature:data.current_weather.temperature
     }
-
     setCards([...cards, cardNew])
-    navigate("/")
-  };
+    navigate('/')
+  }
 
   return (
     <>
