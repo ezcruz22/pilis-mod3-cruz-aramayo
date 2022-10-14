@@ -9,7 +9,5 @@ export const CardsContextProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const value = { cards, setCards };
 
-  return (
-    <CardsContext.Provider value={value}>{children}</CardsContext.Provider>
-  );
+  return <CardsContext.Provider value={value}>{children}</CardsContext.Provider>;
 };
