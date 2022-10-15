@@ -33,7 +33,8 @@ const Formulario = () => {
       name: submit.ciudad,
       latitude:submit.latitud,
       longitude:submit.longitud,
-      temperature:data.current_weather.temperature
+      temperature:data.current_weather.temperature,
+      flag:true
     }
     setCards([...cards, cardNew])
     navigate('/')
