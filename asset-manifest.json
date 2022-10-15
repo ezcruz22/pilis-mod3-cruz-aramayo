@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pilis-mod3-cruz-aramayo/static/css/main.5912c52c.css",
+    "main.js": "/pilis-mod3-cruz-aramayo/static/js/main.2d9580e9.js",
+    "static/js/787.a645a4c7.chunk.js": "/pilis-mod3-cruz-aramayo/static/js/787.a645a4c7.chunk.js",
+    "static/media/logo.jpeg": "/pilis-mod3-cruz-aramayo/static/media/logo.dd1ff4439823fa096fa7.jpeg",
+    "index.html": "/pilis-mod3-cruz-aramayo/index.html",
+    "main.5912c52c.css.map": "/pilis-mod3-cruz-aramayo/static/css/main.5912c52c.css.map",
+    "main.2d9580e9.js.map": "/pilis-mod3-cruz-aramayo/static/js/main.2d9580e9.js.map",
+    "787.a645a4c7.chunk.js.map": "/pilis-mod3-cruz-aramayo/static/js/787.a645a4c7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5912c52c.css",
+    "static/js/main.2d9580e9.js"
+  ]
+}
