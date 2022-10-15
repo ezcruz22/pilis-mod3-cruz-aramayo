@@ -51,7 +51,7 @@ const Formulario = () => {
             id="nombre"
             name="nombre"
             type="text"
-            className="form-control"
+            className="input-form"
             placeholder="Ingrese nombre"
             aria-invalid={errors.nombre ? "true" : "false"}
             {...register("ciudad", { required: true })}
@@ -71,7 +71,7 @@ const Formulario = () => {
             type="number"
             pattern="[0-9]+([.,][0-9]+)?"
             step="any"
-            className="form-control"
+            className="input-form"
             placeholder="Ingrese latitud"
             aria-invalid={errors.latitud ? "true" : "false"}
             {...register("latitud", { required: true })}
@@ -91,7 +91,7 @@ const Formulario = () => {
             type="number"
             pattern="[0-9]+([.,][0-9]+)?"
             step="any"
-            className="form-control"
+            className="input-form"
             placeholder="Ingrese longitud"
             aria-invalid={errors.longitud ? "true" : "false"}
             {...register("longitud", { required: true })}
@@ -102,7 +102,7 @@ const Formulario = () => {
             </span>
           )}
         </div>
-        <button className="btn btn-primary" type="submit">Crear</button>
+        <button className="btn btn-form" type="submit">Crear Tarjeta</button>
       </form>
     </>
   );
