@@ -5,14 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter} from "react-router-dom";
 import { CardsContextProvider } from "./contexts/CardsContext";
+import { UserProvider } from './contexts/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <HashRouter>
-       <CardsContextProvider>
+     <UserProvider>
+      <CardsContextProvider>
         <App />
-       </CardsContextProvider>
+      </CardsContextProvider>
+     </UserProvider>
     </HashRouter>
   </React.StrictMode>
 );
